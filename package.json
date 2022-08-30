@@ -1,0 +1,49 @@
+{
+  "name": "betaflight-syntax-highlighter",
+  "displayName": "Betaflight syntax highlighter",
+  "description": "Syntax highliter for betaflight diff and dump files",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.70.0"
+  },
+  "categories": [
+    "Formatters"
+  ],
+  "keywords": ["Betaflight", "syntax"],
+  "author": {
+    "email": "alexey.gorbach@gmail.com",
+    "name": "Oleksii Gorbach"
+  },
+  "preview": false,
+  "license": "MIT",
+  "publisher": "g0rsky",
+  "repository": {
+    "url": "https://github.com/gorbach/betaflight-vscode-syntaxhighlighter",
+    "type": "git"
+  },
+  "homepage": "https://github.com/gorbach/betaflight-vscode-syntaxhighlighter",
+  "bugs": {
+    "url": "https://github.com/gorbach/betaflight-vscode-syntaxhighlighter/issues"
+  },
+  "icon": "img/logo_fb.png",
+  "contributes": {
+    "languages": [{
+      "id": "btfl",
+      "aliases": ["Betaflight", "btfl"],
+      "extensions": [".txt"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "btfl",
+      "scopeName": "source.betaflight",
+      "path": "./syntaxes/btfl.tmLanguage.json",
+      "embeddedLanguages": {
+        "meta.embedded.block.markdown": "markdown"
+      }
+    }]
+  },
+  "scripts": {
+    "pack": "vsce package",
+    "pub": "vsce publish"
+  }
+}

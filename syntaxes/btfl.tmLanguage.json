@@ -1,0 +1,184 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Betaflight",
+  "patterns": [
+    {
+      "include": "#tagCommand"
+    },
+    {
+      "include": "#tagDescription"
+    },
+    {
+      "include": "#tagStartGroup"
+    },
+    {
+      "include": "#tagEndGroup"
+    },
+    {
+      "include": "#tagStart"
+    },
+    {
+      "include": "#comment"
+    },
+    {
+      "include": "#noArgCommands"
+    },
+    {
+      "include": "#singleArgCommands"
+    },
+    {
+      "include": "#setkeyword"
+    },
+    {
+      "include": "#featureKeyword"
+    }
+  ],
+  "repository": {
+    "comment": {
+      "patterns": [
+        {
+          "name": "comment.line.btfl",
+          "match": "#.*$"
+        }
+      ],
+      "disabled": 1
+    },
+    "tagCommand": {
+      "patterns": [
+        {
+          "name": "keyword.control.tag.btfl",
+          "match": "^(#\\$) (TITLE|FIRMWARE_VERSION|CATEGORY|STATUS|KEYWORDS|AUTHOR|FORCE_OPTIONS_REVIEW|INCLUDE|OPTION|DISCLAIMER|INCLUDE_DISCLAIMER|WARNING|INCLUDE_WARNING|HIDDEN|PARSER): (.*)",
+          "captures": {
+            "1": { "name": "keyword.operator.new.btfl" },
+            "2": { "name": "entity.name.type.class" },
+            "3": { "name": "constant.other" }
+          }
+        }
+      ]
+    },
+    "tagStartGroup": {
+      "patterns": [
+        {
+          "name": "keyword.control.tag.btfl",
+          "match": "^(#\\$) (OPTION_GROUP) (BEGIN): (.*)",
+          "captures": {
+            "1": { "name": "keyword.operator.new.btfl" },
+            "2": { "name": "entity.name.type.class" },
+            "3": { "name": "variable.other.btfl" },
+            "4": {
+              "name": "constant.other"
+            }
+          }
+        }
+      ]
+    },
+    "tagEndGroup": {
+      "patterns": [
+        {
+          "name": "keyword.control.tag.btfl",
+          "match": "^(#\\$) (OPTION_GROUP) (END)",
+          "captures": {
+            "1": { "name": "keyword.operator.new.btfl" },
+            "2": { "name": "entity.name.type.class" },
+            "3": { "name": "variable.other.btfl" }
+          }
+        }
+      ]
+    },
+    "tagStart": {
+      "patterns": [
+        {
+          "name": "keyword.control.tag.btfl",
+          "match": "^(#\\$) (OPTION) (BEGIN) (\\(CHECKED\\)): (.*)",
+          "captures": {
+            "1": { "name": "keyword.operator.new.btfl" },
+            "2": { "name": "entity.name.type.class" },
+            "3": { "name": "variable.other.btfl" },
+            "4": { "name": "variable.other.btfl" },
+            "5": {
+              "name": "constant.other"
+            }
+          }
+        }
+      ]
+    },
+    "tagDescription": {
+      "patterns": [
+        {
+          "name": "keyword.control.tag.btfl",
+          "match": "^(#\\$) (DESCRIPTION|DISCLAIMER|DISCUSSION):(.*)",
+          "captures": {
+            "1": { "name": "keyword.operator.new.btfl" },
+            "2": { "name": "entity.name.type.class" },
+            "3": {
+              "name": "meta.embedded.block.markdown"
+            }
+          }
+        }
+      ]
+    },
+    "singleArgCommands": {
+      "patterns": [
+        {
+          "name": "keyword.control.btfl",
+          "match": "^(batch|defaults|board_name|manufacturer_id|mcu_id|resource|beacon|map|serial|aux|profile|rateprofile)\\s+([\\w\\s\\d]+)",
+          "captures": {
+            "1": { "name": "keyword.control.btfl" },
+            "2": { "name": "constant.numeric.string.btfl" }
+          }
+        }
+      ]
+    },
+    "noArgCommands": {
+      "patterns": [
+        {
+          "name": "keyword.control.btfl",
+          "match": "^(save|signature)"
+        }
+      ]
+    },
+    "setkeyword": {
+      "patterns": [
+        {
+          "name": "keyword.control.set.btfl",
+          "match": "(set) ([\\w\\d_]+) (=) ([\\w\\d\\.\\,-]+)",
+          "captures": {
+            "1": { "name": "keyword.control.set.btfl" },
+            "2": { "name": "variable.other.btfl" },
+            "3": { "name": "keyword.operator.assignment.btfl" },
+            "4": { "name": "constant.numeric.decimal.btfl" }
+          }
+        }
+      ]
+    },
+    "equal": {
+      "patterns": [
+        {
+          "name": "keyword.operator.assignment.btfl",
+          "match": "(=)"
+        }
+      ]
+    },
+    "featureKeyword": {
+      "patterns": [
+        {
+          "name": "keyword.control.feature.btfl",
+          "match": "(feature) -(\\w+)",
+          "captures": {
+            "1": { "name": "keyword.control.feature.btfl" },
+            "2": { "name": "constant.feature.off.btfl" }
+          }
+        },
+        {
+          "name": "keyword.control.feature.btfl",
+          "match": "(feature) (\\w+)",
+          "captures": {
+            "1": { "name": "keyword.control.feature.btfl" },
+            "2": { "name": "constant.on.btfl" }
+          }
+        }
+      ]
+    }
+  },
+  "scopeName": "source.betaflight"
+}
